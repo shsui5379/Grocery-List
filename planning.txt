@@ -1,0 +1,17 @@
+Variables:
+An array to store the items of the grocery list
+
+Functions:
+Push an added item to the grocery array
+Delete the item from a given index of the grocery list
+Swap a given index of the grocery list with the previous
+Swap a given index of the grocery list with the next 
+
+Interface: 
+Logo on top right of the screen
+An ordered list based on the grocery list array displayed under the title
+Radios to chose from adding or modifying list
+When the adding radio is selected, show button to add to grocery list under input box
+When the modify radio is selected, show a button to move item # up, mode it down or delete it
+
+Flow: 
