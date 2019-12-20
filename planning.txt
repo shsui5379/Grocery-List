@@ -4,14 +4,34 @@ An array to store the items of the grocery list
 Functions:
 Push an added item to the grocery array
 Delete the item from a given index of the grocery list
-Swap a given index of the grocery list with the previous
+Swap a given index of the grocery list with the previous (update number in box too)
 Swap a given index of the grocery list with the next 
+Check array to see if indexOf the input is >0 (duplicate) and not add them
+Update quantity
+Display
 
 Interface: 
-Logo on top right of the screen
+Logo on top right of the screen next to brand name
 An ordered list based on the grocery list array displayed under the title
 Radios to chose from adding or modifying list
-When the adding radio is selected, show button to add to grocery list under input box
-When the modify radio is selected, show a button to move item # up, mode it down or delete it
+Text box for entering names of grocery items
+When the add radio is selected, show button to add to grocery list under input box
+When the modify radio is selected, show a button to move item # up, mode it down, delete it, increase quantity or decrease quantity
+When the add radio is selected, show a box to type quantity
 
 Flow: 
+If the add radio button is selected, show a text box for the name of the item, a text box for quantity and a button to add
+When the user clicks the add button, concat the name and the quantity, seperated by a delimiter
+Push the resulting string into the grocery list array
+Display function will iterate through the grocery list and display the names in an ordered list.  Items with quantity >1 will also show quantity next to it
+
+If the modify radio button is selected, show a text box for the position of the item in the grocery list.  Show buttons delete, increase and decrese.  Show radio to increase/decrease quantity or position
+Refer to the element at input-1
+To delete, splice out the deleted item
+To move up, store index in question in a temp var, index in the array = the element of prev index, then set the prev index = the temp var
+Then, decrease the innerHTML of the text box by 1
+To move down, store index in question in a temp var, index in the array = the element of next index, then set the next index = the temp var
+Then, increase the innerHTMl of the text box by 1
+To increase quantity, increase the quantity part of the string of the index in question
+To decrease quantity, decrease the quantity part of the string of the index in question
+Update the display
