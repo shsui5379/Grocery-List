@@ -1,5 +1,5 @@
 Global variables:
-An array to store the items of the grocery list
+An array to store the items of the grocery list [done]
 
 Functions:
 Push an added item to the grocery array
@@ -13,7 +13,7 @@ Display
 Empty the list with warning 
 
 Interface: 
-Logo on top left of the screen next to brand name
+Logo on top left of the screen next to brand name [done]
 An ordered list based on the grocery list array displayed under the title
 Show quantity number next to name if quantity>1
 Radios to chose from adding or modifying list
