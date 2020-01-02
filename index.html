@@ -12,7 +12,7 @@
 				body
 				{
 					background-color: #ffbd38;
-					font: 16pt Tw Cen MT;
+					font: 18pt Tw Cen MT;
 				}
 				img
 				{
@@ -21,11 +21,25 @@
 					bottom: 85%;
 					height: 125px;
 				}
+				input
+				{
+					padding: 5px;
+					background-color: #b3e5fc;
+				}
+				button
+				{
+					font: 18pt Tw Cen MT;
+					background-color: #94bdff;
+				}
 			</style>
 			<script>
 				function initialize()
 				{
 					groceries = [];
+				}
+				function director()
+				{
+
 				}
 			</script>
 		</head>
@@ -34,5 +48,28 @@
 			<img src = "logo.png" />
 			<h1>Shop Lift Up Grocery List</h1>
 			</br>
+			<!-- user interaction -->
+			<form id = "controlsIn1">
+				<!-- choose between adding or modifying -->
+				<label><input name = "control1" type = "radio" value = "1">Add item</label>
+				<label><input name = "control1" type = "radio" value = "2">Modify list</label>
+			</form>
+			</br>
+			<form id = "controlsIn2">
+				<!-- only display when modifying.  options to move items or delete items -->
+				<label><input name = "control2" type = "radio" value = "3">Delete item</label>
+				<label><input name = "control2" type = "radio" value = "4">Rearange list</label>
+			</form>
+			</br>
+			<form id = "typeIn">
+				<!-- only displayed when adding.  for recieving the name of the item -->
+				<label>Item name: <input name = "itemName" type = "text" id = "name"></label>
+				</br></br>
+				<!-- for quantity, or position, depending on what the user needs to do -->
+				<label><span id = "in2label"></span><input name = "numIn" type = "number"></label>
+			</form>
+			</br>
+			<!-- button to submit -->
+			<button onclick="director();"><span id = "action"></span></button>
 		</body>
 	</html>
