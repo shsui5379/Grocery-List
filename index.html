@@ -37,11 +37,23 @@
 				function initialize()
 				{
 					groceries = [];
+
+					form1 = document.getElementById("controlsIn1");
+					form2 = document.getElementById("controlsIn2");
+					fields = document.getElementById("typeIn");
+					nameBox = document.getElementById("name");
+					numBox = document.getElementById("numIn");
+					buttonText = document.getElementById("action");
+				}
+				function addBox()
+				{
+
 				}
 				function director()
 				{
 
 				}
+
 			</script>
 		</head>
 		<body onload = "initialize();">
@@ -52,7 +64,7 @@
 			<!-- user interaction -->
 			<form id = "controlsIn1">
 				<!-- choose between adding or modifying -->
-				<label><input name = "control1" type = "radio" value = "1">Add item</label>
+				<label><input name = "control1" type = "radio" value = "1" onclick="addBox();">Add item</label>
 				<label><input name = "control1" type = "radio" value = "2">Modify list</label>
 			</form>
 			</br>
