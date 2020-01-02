@@ -42,14 +42,14 @@
 					form2 = document.getElementById("controlsIn2");
 					fields = document.getElementById("typeIn");
 					nameBox = document.getElementById("name");
-					numBoxLabel = document.getElementById("in2Label");
+					numBoxLabel = document.getElementById("numLabel");
 					buttonText = document.getElementById("action");
 				}
 				function addBox()  //handles what happens to the UI when the user is to add to the list
 				{
 					form2.style.display = "none";
 					nameBox.style.display = "inline";
-					numBoxLabel.innerHTML = "quantity"
+					numBoxLabel.innerHTML = "Quantity: ";
 					buttonText.innerHTML = "Add";
 				}
 				function director()
@@ -82,7 +82,7 @@
 				<label>Item name: <input name = "itemName" type = "text" id = "name"></label>
 				</br></br>
 				<!-- for quantity, or position, depending on what the user needs to do -->
-				<label><span id = "in2label"></span><input name = "numIn" type = "number"></label>
+				<label><span id = "numLabel"></span><input name = "numIn" type = "number"></label>
 			</form>
 			</br>
 			<!-- button to submit -->
