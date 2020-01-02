@@ -42,12 +42,15 @@
 					form2 = document.getElementById("controlsIn2");
 					fields = document.getElementById("typeIn");
 					nameBox = document.getElementById("name");
-					numBox = document.getElementById("numIn");
+					numBoxLabel = document.getElementById("in2Label");
 					buttonText = document.getElementById("action");
 				}
-				function addBox()
+				function addBox()  //handles what happens to the UI when the user is to add to the list
 				{
-
+					form2.style.display = "none";
+					nameBox.style.display = "inline";
+					numBoxLabel.innerHTML = "quantity"
+					buttonText.innerHTML = "Add";
 				}
 				function director()
 				{
@@ -60,9 +63,9 @@
 			<!-- heading -->
 			<img src = "logo.png" />
 			<h1>Shop Lift Up Grocery List</h1>
-			</br>
 			<!-- user interaction -->
 			<form id = "controlsIn1">
+				</br>
 				<!-- choose between adding or modifying -->
 				<label><input name = "control1" type = "radio" value = "1" onclick="addBox();">Add item</label>
 				<label><input name = "control1" type = "radio" value = "2">Modify list</label>
