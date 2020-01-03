@@ -10,17 +10,17 @@ Spice out delimiter from input if indexOf >0 (present)
 Check if inputted numbers are >0
 Update quantity
 Display
-Empty the list with warning 
+Empty the list with warning [done]
 
 Interface: 
 Logo on top left of the screen next to brand name [done]
 An ordered list based on the grocery list array displayed under the title
 Show quantity number next to name if quantity>1
-Radios to chose from adding or modifying list
-When the add radio is selected, show button to add to grocery list.  Also show a text box for name and number box for quantity
-When the modify radio is selected, show a button to delete, increase or decrease.  Also show a text box for position number
-    As well as radio to chose from modifying position or quantity
-Reset button
+Radios to chose from adding or modifying list [done]
+When the add radio is selected, show button to add to grocery list.  Also show a text box for name and number box for quantity [done]
+When the modify radio is selected, show a button to delete, increase or decrease.  Also show a text box for position number [done]
+    As well as radio to chose from modifying position or quantity [done]
+Reset button [done]
 
 Flow: 
 If the add radio button is selected, show a text box for the name of the item, a number box for quantity and a button to add
