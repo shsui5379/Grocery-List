@@ -45,12 +45,14 @@
 					numBoxLabel = document.getElementById("numLabel");
 					buttonText = document.getElementById("action");
 					arrowButtons = document.getElementById("arrows");
+					submitButton = document.getElementById("mainButton");
 				}
 				function addUI()  //handles what happens to the UI when the user is to add to the list
 				{
 					form2.style.display = "none";
 					nameBox.style.display = "inline";
 					arrowButtons.style.display = "none";
+					submitButton.style.display = "inline";
 					numBoxLabel.innerHTML = "Quantity: ";
 					buttonText.innerHTML = "Add";
 				}
@@ -63,7 +65,13 @@
 				function deleteUI() //UI when user is deleting items
 				{
 					arrowButtons.style.display = "none";
+					submitButton.style.display = "inline";
 					buttonText.innerHTML = "Delete";
+				}
+				function rearrangeUI() //UI when rearranging
+				{
+					arrowButtons.style.display = "inline";
+					submitButton.style.display = "none";
 				}
 				function submitDirector()
 				{
@@ -102,7 +110,7 @@
 					Delete item
 				</label>
 				<label>
-					<input name = "control2" type = "radio" value = "4">
+					<input name = "control2" type = "radio" value = "4" onchange="rearrangeUI();">
 					Rearange list
 				</label>
 			</form>
@@ -125,7 +133,7 @@
 			</br>
 
 			<!-- button to submit -->
-			<button onclick="submitDirector();"><span id = "action"></span></button>
+			<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
 			<span id = "arrows">
 				<button onclick="arrorDirector('up');">&#11014</button>
 				<button onclick="arrorDirector('down');">&#11015</button>	
