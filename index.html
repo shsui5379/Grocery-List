@@ -45,30 +45,40 @@
 					numBoxLabel = document.getElementById("numLabel");
 					buttonText = document.getElementById("action");
 				}
-				function addBox()  //handles what happens to the UI when the user is to add to the list
+				function addUI()  //handles what happens to the UI when the user is to add to the list
 				{
 					form2.style.display = "none";
 					nameBox.style.display = "inline";
 					numBoxLabel.innerHTML = "Quantity: ";
 					buttonText.innerHTML = "Add";
 				}
-				function director()
+				function modifyUI()  //when user is to modify list
+				{
+					form2.style.display = "inline";
+					nameBox.style.display = "none";
+					numBoxLabel.innerHTML = "Position: ";
+				}
+				function submitDirector()
+				{
+
+				}
+				function arrowDirector()
 				{
 					
 				}
-
 			</script>
 		</head>
 		<body onload = "initialize();">
 			<!-- heading -->
 			<img src = "logo.png" />
 			<h1>Shop Lift Up Grocery List</h1>
+
 			<!-- user interaction -->
 			<form id = "controlsIn1">
 				</br>
 				<!-- choose between adding or modifying -->
-				<label><input name = "control1" type = "radio" value = "1" onclick="addBox();">Add item</label>
-				<label><input name = "control1" type = "radio" value = "2">Modify list</label>
+				<label><input name = "control1" type = "radio" value = "1" onclick="addUI();">Add item</label>
+				<label><input name = "control1" type = "radio" value = "2" onclick="modifyUI();">Modify list</label>
 			</form>
 
 			<form id = "controlsIn2">
@@ -79,15 +89,16 @@
 			</form>
 
 			<form id = "typeIn">
-				</br>
 				<!-- only displayed when adding.  for recieving the name of the item -->
-				<label>Item name: <input name = "itemName" type = "text" id = "name"></label>
-				</br></br>
+				<label  id = "name"></br>Item name: <input name = "itemName" type = "text"></br></label>
+				</br>
 				<!-- for quantity, or position, depending on what the user needs to do -->
 				<label><span id = "numLabel"></span><input name = "numIn" type = "number"></label>
 			</form>
 			</br>
+
 			<!-- button to submit -->
-			<button onclick="director();"><span id = "action"></span></button>
+			<button onclick="submitDirector();"><span id = "action"></span></button>
+			<
 		</body>
 	</html>
