@@ -46,6 +46,13 @@
 					buttonText = document.getElementById("action");
 					arrowButtons = document.getElementById("arrows");
 					submitButton = document.getElementById("mainButton");
+					default1 = document.getElementById("addRadio");
+					default2 = document.getElementById("deleteRadio");
+
+					default1.checked = true;
+					default2.checked = true;
+
+					addUI();
 				}
 				function addUI()  //handles what happens to the UI when the user is to add to the list
 				{
@@ -61,6 +68,14 @@
 					form2.style.display = "inline";
 					nameBox.style.display = "none";
 					numBoxLabel.innerHTML = "Position: ";
+					if (default2.checked)
+					{
+						deleteUI();
+					}
+					else
+					{
+						rearrangeUI();
+					}
 				}
 				function deleteUI() //UI when user is deleting items
 				{
@@ -93,7 +108,7 @@
 				</br>
 				<!-- choose between adding or modifying -->
 				<label>
-					<input name = "control1" type = "radio" value = "1" onchange="addUI();">
+					<input name = "control1" type = "radio" value = "1" onchange="addUI();" id = "addRadio">
 					Add item
 				</label>
 				<label>
@@ -106,7 +121,7 @@
 				</br>
 				<!-- only display when modifying.  options to move items or delete items -->
 				<label>
-					<input name = "control2" type = "radio" value = "3" onchange="deleteUI();">
+					<input name = "control2" type = "radio" value = "3" onchange="deleteUI();" id = "deleteRadio">
 					Delete item
 				</label>
 				<label>
