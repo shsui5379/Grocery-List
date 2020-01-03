@@ -54,13 +54,17 @@
 					numBoxLabel.innerHTML = "Quantity: ";
 					buttonText.innerHTML = "Add";
 				}
-				function modifyUI()  //when user is to modify list
+				function modifyUI()  //UI when user is to modify list
 				{
 					form2.style.display = "inline";
 					nameBox.style.display = "none";
 					numBoxLabel.innerHTML = "Position: ";
 				}
-
+				function deleteUI() //UI when user is deleting items
+				{
+					arrowButtons.style.display = "none";
+					buttonText.innerHTML = "Delete";
+				}
 				function submitDirector()
 				{
 
@@ -80,23 +84,43 @@
 			<form id = "controlsIn1">
 				</br>
 				<!-- choose between adding or modifying -->
-				<label><input name = "control1" type = "radio" value = "1" onclick="addUI();">Add item</label>
-				<label><input name = "control1" type = "radio" value = "2" onclick="modifyUI();">Modify list</label>
+				<label>
+					<input name = "control1" type = "radio" value = "1" onchange="addUI();">
+					Add item
+				</label>
+				<label>
+					<input name = "control1" type = "radio" value = "2" onchange="modifyUI();">
+					Modify list
+				</label>
 			</form>
 
 			<form id = "controlsIn2">
 				</br>
 				<!-- only display when modifying.  options to move items or delete items -->
-				<label><input name = "control2" type = "radio" value = "3">Delete item</label>
-				<label><input name = "control2" type = "radio" value = "4">Rearange list</label>
+				<label>
+					<input name = "control2" type = "radio" value = "3" onchange="deleteUI();">
+					Delete item
+				</label>
+				<label>
+					<input name = "control2" type = "radio" value = "4">
+					Rearange list
+				</label>
 			</form>
 
 			<form id = "typeIn">
 				<!-- only displayed when adding.  for recieving the name of the item -->
-				<label  id = "name"></br>Item name: <input name = "itemName" type = "text"></br></label>
+				<label  id = "name">
+					</br>
+					Item name: 
+					<input name = "itemName" type = "text">
+					</br>
+				</label>
 				</br>
 				<!-- for quantity, or position, depending on what the user needs to do -->
-				<label><span id = "numLabel"></span><input name = "numIn" type = "number"></label>
+				<label>
+					<span id = "numLabel"></span>
+					<input name = "numIn" type = "number">
+				</label>
 			</form>
 			</br>
 
