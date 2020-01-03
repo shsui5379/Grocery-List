@@ -44,11 +44,13 @@
 					nameBox = document.getElementById("name");
 					numBoxLabel = document.getElementById("numLabel");
 					buttonText = document.getElementById("action");
+					arrowButtons = document.getElementById("arrows");
 				}
 				function addUI()  //handles what happens to the UI when the user is to add to the list
 				{
 					form2.style.display = "none";
 					nameBox.style.display = "inline";
+					arrowButtons.style.display = "none";
 					numBoxLabel.innerHTML = "Quantity: ";
 					buttonText.innerHTML = "Add";
 				}
@@ -58,6 +60,7 @@
 					nameBox.style.display = "none";
 					numBoxLabel.innerHTML = "Position: ";
 				}
+
 				function submitDirector()
 				{
 
