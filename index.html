@@ -96,6 +96,18 @@
 				{
 
 				}
+				function reset() //empty list
+				{
+					if (confirm("Are you sure you want to empty this list?  This cannot be undone."))
+					{
+						groceries = [];
+						display();
+					}
+				}
+				function display()
+				{
+					
+				}
 			</script>
 		</head>
 		<body onload = "initialize();">
@@ -153,5 +165,7 @@
 				<button onclick="arrorDirector('up');">&#11014</button>
 				<button onclick="arrorDirector('down');">&#11015</button>	
 			</span>
+			</br></br>
+			<button onclick = "reset();">Empty list</button>
 		</body>
 	</html>
