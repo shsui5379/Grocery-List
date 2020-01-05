@@ -38,6 +38,7 @@
 				}
 			</style>
 			<script>
+//basics
 				function initialize()
 				{
 					groceries = [];
@@ -66,7 +67,7 @@
 
 				}
 
-
+//ui controls
 				function addUI()  //handles what happens to the UI when the user is to add to the list
 				{
 					form2.style.display = "none";
@@ -75,12 +76,14 @@
 					submitButton.style.display = "inline";
 					numBoxLabel.innerHTML = "Quantity: ";
 					buttonText.innerHTML = "Add";
+					errorMsg.innerHTML = "";
 				}
 				function modifyUI()  //UI when user is to modify list
 				{
 					form2.style.display = "inline";
 					nameBoxForm.style.display = "none";
 					numBoxLabel.innerHTML = "Position: ";
+					errorMsg.innerHTML = "";
 					if (default2.checked)
 					{
 						deleteUI();
@@ -101,8 +104,21 @@
 					arrowButtons.style.display = "inline";
 					submitButton.style.display = "none";
 				}
+				function errorBox(box) //box's state when user enters illegal input
+				{
+					box.style.borderColor = "red";
+					box.style.borderWidth = "5px";
+					box.style.backgroundColor = "rgb(255, 131, 131)";
+				}
+				function normalBox(box) //restore box from error state
+				{
+					box.style.borderColor = "black";
+					box.style.borderWidth = "2px";
+					box.style.backgroundColor = "#b3e5fc";
+					errorMsg.innerHTML = "";
+				}
 
-
+//button onclicks
 				function submitDirector()
 				{
 					if (verifyNumber(fields.numIn.value))
@@ -129,7 +145,7 @@
 					}
 				}
 
-
+//utilities
 				function verifyNumber(inputNum) //makes sure number is a positive integer
 				{
 					if (inputNum*1 < 0 || !Number.isInteger(inputNum*1) || inputNum.length==0)
@@ -149,20 +165,22 @@
 						{
 							var numType = "position";
 						}
-						numBox.style.borderColor = "red";
-						numBox.style.borderWidth = "5px";
-						numBox.style.backgroundColor = "rgb(255, 131, 131)";
+						errorBox(numBox);
 						errorMsg.innerHTML = "<b>The " + numType + " has to be a " + problem + "</b>";
 						return false;
 					}
-					numBox.style.borderColor = "black";
-					numBox.style.borderWidth = "2px";
-					numBox.style.backgroundColor = "#b3e5fc";
-					errorMsg.innerHTML = "";
+					normalBox(numBox);
 					return true;
 				}
 				function verifyName(inputString) //replaces delimiter if found, and determine if name is inputted
 				{
+					if (fields.itemName.value.length == 0)
+					{
+						errorBox(nameBox);
+						errorMsg.innerHTML = "<b>You forgot to enter a name for the item</b>";
+						return false;
+					}
+					normalBox(nameBox);
 					return true;
 				}
 			</script>
