@@ -32,6 +32,10 @@
 					font: 18pt Tw Cen MT;
 					background-color: #94bdff;
 				}
+				#error
+				{
+					color: red;
+				}
 			</style>
 			<script>
 				function initialize()
@@ -41,7 +45,7 @@
 					form1 = document.getElementById("controlsIn1");
 					form2 = document.getElementById("controlsIn2");
 					fields = document.getElementById("typeIn");
-					nameBoxObj = document.getElementById("nameForm");
+					nameBoxForm = document.getElementById("nameForm");
 					numBoxLabel = document.getElementById("numLabel");
 					buttonText = document.getElementById("action");
 					arrowButtons = document.getElementById("arrows");
@@ -49,6 +53,8 @@
 					default1 = document.getElementById("addRadio");
 					default2 = document.getElementById("deleteRadio");
 					errorMsg = document.getElementById("error");
+					numBox = document.getElementById("numInBox");
+					nameBox = document.getElementById("itemNameBox");
 
 					default1.checked = true;
 					default2.checked = true;
@@ -60,10 +66,11 @@
 
 				}
 
+
 				function addUI()  //handles what happens to the UI when the user is to add to the list
 				{
 					form2.style.display = "none";
-					nameBoxObj.style.display = "inline";
+					nameBoxForm.style.display = "inline";
 					arrowButtons.style.display = "none";
 					submitButton.style.display = "inline";
 					numBoxLabel.innerHTML = "Quantity: ";
@@ -72,7 +79,7 @@
 				function modifyUI()  //UI when user is to modify list
 				{
 					form2.style.display = "inline";
-					nameBoxObj.style.display = "none";
+					nameBoxForm.style.display = "none";
 					numBoxLabel.innerHTML = "Position: ";
 					if (default2.checked)
 					{
@@ -95,14 +102,14 @@
 					submitButton.style.display = "none";
 				}
 
+
 				function submitDirector()
 				{
 					if (verifyNumber(fields.numIn.value))
 					{
 						if (form1.control1.value == "1") //Add mode button
 						{
-							var toAdd = fields.itemName.value + fields.numIn.value;
-							if (verifyName(toAdd))
+							if (verifyName(fields.itemName.value));
 							{
 
 							}
@@ -122,18 +129,19 @@
 					}
 				}
 
+
 				function verifyNumber(inputNum) //makes sure number is a positive integer
 				{
-					if (inputNum*1 < 0 || !Number.isInteger(inputNum*1))
+					if (inputNum*1 < 0 || !Number.isInteger(inputNum*1) || inputNum.length==0)
 					{
 						switch (true)
 						{
 							case inputNum*1 < 0: var problem = "positive number";
 							break;
-							case !Number.isInteger(inputNum*1): var problem = "whole number";
+							default: var problem = "whole number";
 							break;
 						}
-						if (inputNum == "1")
+						if (form1.control1.value == "1")
 						{
 							var numType = "quantity";
 						}
@@ -141,9 +149,16 @@
 						{
 							var numType = "position";
 						}
-						errorMsg.innerHTML = "The " + numType + " has to be a " + problem
+						numBox.style.borderColor = "red";
+						numBox.style.borderWidth = "5px";
+						numBox.style.backgroundColor = "rgb(255, 131, 131)";
+						errorMsg.innerHTML = "<b>The " + numType + " has to be a " + problem + "</b>";
 						return false;
 					}
+					numBox.style.borderColor = "black";
+					numBox.style.borderWidth = "2px";
+					numBox.style.backgroundColor = "#b3e5fc";
+					errorMsg.innerHTML = "";
 					return true;
 				}
 				function verifyName(inputString) //replaces delimiter if found, and determine if name is inputted
@@ -190,28 +205,28 @@
 
 			<form id = "typeIn">
 				<!-- only displayed when adding.  for recieving the name of the item -->
-				<label  id = "nameForm">
+				<label id = "nameForm">
 					</br>
 					Item name: 
-					<input name = "itemName" type = "text">
+					<input name = "itemName" type = "text" id = "itemNameBox">
 					</br>
 				</label>
 				</br>
 				<!-- for quantity, or position, depending on what the user needs to do -->
 				<label>
 					<span id = "numLabel"></span>
-					<input name = "numIn" type = "number">
+					<input name = "numIn" type = "number" id = "numInBox">
 				</label>
 			</form>
 			</br>
 
 			<!-- button to submit -->
 			<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
-			<span id = "error"></span>
 			<span id = "arrows">
 				<button onclick="arrorDirector('up');">&#11014</button>
 				<button onclick="arrorDirector('down');">&#11015</button>	
 			</span>
+			<span id = "error"></span>
 			</br></br>
 			<button onclick = "reset();">Empty list</button>
 		</body>
