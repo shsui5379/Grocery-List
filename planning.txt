@@ -24,7 +24,7 @@ Reset button [done]
 
 Flow: 
 If the add radio button is selected, show a text box for the name of the item, a number box for quantity and a button to add [done]
-When the user clicks the add button, check if inputted number is >0
+When the user clicks the add button, check if inputted number is >0 [done]
 Check if delimiter is used in the item name.  If found, remove it
 Then, check if the item exists on the list already.  
 If it's not on the list already, concat the inputted name and the quantity, seperated by a delimiter (\)

@@ -131,7 +131,14 @@
 								if (checkDupes(fields.itemName.value, groceries))
 								{
 									groceries.push(fields.itemName.value);
-								}					
+									//groceries[0].quan;
+									groceries[0].quan = 2;fields.numIn.value
+									errorMsg.innerHTML = "";
+								}
+								else
+								{
+									errorMsg.innerHTML = fields.itemName.value + "already exists on the list";
+								}	
 							}
 						}
 					}
