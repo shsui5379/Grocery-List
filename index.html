@@ -125,9 +125,13 @@
 					{
 						if (form1.control1.value == "1") //Add mode button
 						{
-							if (verifyName(fields.itemName.value));
+							//if (typeof verifyName(fields.itemName.value) !== "boolean");
+							if (verifyName(fields.itemName.value))
 							{
-
+								if (checkDupes(fields.itemName.value, groceries))
+								{
+									groceries.push(fields.itemName.value);
+								}					
 							}
 						}
 					}
@@ -180,7 +184,29 @@
 						errorMsg.innerHTML = "<b>You forgot to enter a name for the item</b>";
 						return false;
 					}
+					return true;
 					normalBox(nameBox);
+					/*if (inputString.indexOf("`") > -1)
+					{
+						inputString = inputString.slice(0, inputString.indexOf("`")) + "'" + inputString.slice(inputString.indexOf("`")+1, inputString.length);
+						verifyName(inputString);
+					}
+					else
+					{
+						return inputString;
+					}*/
+				}
+				function checkDupes(entry, list) //verify that the input doesn't already exist in the grocery list
+				{
+					var temp = [];
+					for (var item of list)
+					{
+						temp.push(item.toLowerCase());
+					}
+					if (temp.indexOf(entry.toLowerCase()) > -1)
+					{
+						return false;
+					}
 					return true;
 				}
 			</script>
