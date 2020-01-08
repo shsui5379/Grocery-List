@@ -125,25 +125,29 @@
 					{
 						if (form1.control1.value == "1") //Add mode button
 						{
-							//if (typeof verifyName(fields.itemName.value) !== "boolean");
-							if (verifyName(fields.itemName.value))
+							var toAddName = verifyName(fields.itemName.value);
+							if (toAddName != false)
 							{
-								if (checkDupes(fields.itemName.value, groceries))
+								if (checkDupes(toAddName, groceries))
 								{
-									groceries.push(fields.itemName.value);
-									//groceries[0].quan;
-									groceries[0].quan = 2;fields.numIn.value
+									normalBox(nameBox);
+									groceries.push(toAddName + "`" + fields.numIn.value);
 									errorMsg.innerHTML = "";
 								}
 								else
 								{
-									errorMsg.innerHTML = fields.itemName.value + "already exists on the list";
+									errorMsg.innerHTML = "<b>" + toAddName + " already exists on the list</b>";
+									errorBox(nameBox);
 								}	
 							}
 						}
 					}
 				}
-				function arrowDirector()
+				function upButton()
+				{
+
+				}
+				function downButton()
 				{
 
 				}
@@ -191,28 +195,21 @@
 						errorMsg.innerHTML = "<b>You forgot to enter a name for the item</b>";
 						return false;
 					}
-					return true;
 					normalBox(nameBox);
-					/*if (inputString.indexOf("`") > -1)
+					while (inputString.indexOf("`") > -1)
 					{
 						inputString = inputString.slice(0, inputString.indexOf("`")) + "'" + inputString.slice(inputString.indexOf("`")+1, inputString.length);
-						verifyName(inputString);
 					}
-					else
-					{
-						return inputString;
-					}*/
+					return inputString;
 				}
 				function checkDupes(entry, list) //verify that the input doesn't already exist in the grocery list
 				{
-					var temp = [];
 					for (var item of list)
 					{
-						temp.push(item.toLowerCase());
-					}
-					if (temp.indexOf(entry.toLowerCase()) > -1)
-					{
-						return false;
+						if(item.substring(0, item.indexOf("`")).toLowerCase() == entry.toLowerCase())
+						{
+							return false;
+						}
 					}
 					return true;
 				}
@@ -274,8 +271,8 @@
 			<!-- button to submit -->
 			<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
 			<span id = "arrows">
-				<button onclick="arrorDirector('up');">&#11014</button>
-				<button onclick="arrorDirector('down');">&#11015</button>	
+				<button onclick="upButton();">&#11014</button>
+				<button onclick="downButton();">&#11015</button>	
 			</span>
 			<span id = "error"></span>
 			</br></br>
