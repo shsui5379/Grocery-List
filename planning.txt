@@ -9,7 +9,7 @@ Check array to see if indexOf the input is >0 (duplicate) in the grocery list an
 Spice out delimiter from input if indexOf >0 (present) [done]
 Check if inputted numbers are >0 [done]
 Update quantity
-Display
+Display [done]
 Empty the list with warning [done]
 
 Interface: 
@@ -29,7 +29,7 @@ Check if delimiter is used in the item name.  If found, remove it [done]
 Then, check if the item exists on the list already.  [done]
 If it's not on the list already, concat the inputted name and the quantity, seperated by a delimiter (`) [done]
 Push the resulting string into the grocery list array [done]
-Display function will iterate through the grocery list and display the names in an ordered list.  Items with quantity >1 will also show quantity next to it
+Display function will iterate through the grocery list and display the names in an ordered list.  Items with quantity >1 will also show quantity next to it [done]
 
 If the modify radio button is selected, show a number box for the position of the item in the grocery list.  Show buttons delete, increase and decrese.  Show radio to increase/decrease quantity or position [done]
 Check if inputted number is >0, and refer to the element at input-1
@@ -40,4 +40,4 @@ To move down, store index in question in a temp var, index in the array = the el
 Then, increase the innerHTML of the box by 1
 To increase quantity, increase the quantity part of the string of the index in question
 To decrease quantity, decrease the quantity part of the string of the index in question
-Update the display
+Update the display [done]
