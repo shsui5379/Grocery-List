@@ -3,7 +3,7 @@ An array to store the items of the grocery list [done]
 
 Functions:
 Push an added item to the grocery array [done]
-Splice out the item from a given index of the grocery list
+Splice out the item from a given index of the grocery list [done]
 Swap a given index of the grocery list with the previous or next (update number in box too) with a temp var
 Check array to see if indexOf the input is >0 (duplicate) in the grocery list and not add them [done]
 Spice out delimiter from input if indexOf >0 (present) [done]
@@ -32,8 +32,8 @@ Push the resulting string into the grocery list array [done]
 Display function will iterate through the grocery list and display the names in an ordered list.  Items with quantity >1 will also show quantity next to it [done]
 
 If the modify radio button is selected, show a number box for the position of the item in the grocery list.  Show buttons delete, increase and decrese.  Show radio to increase/decrease quantity or position [done]
-Check if inputted number is >0, and refer to the element at input-1
-To delete, splice out the deleted item
+Check if inputted number is >0, and refer to the element at input-1 [done]
+To delete, splice out the deleted item [done]
 To move up, store index in question in a temp var, index in the array = the element of prev index, then set the prev index = the temp var
 Then, decrease the innerHTML of the box by 1
 To move down, store index in question in a temp var, index in the array = the element of next index, then set the next index = the temp var
