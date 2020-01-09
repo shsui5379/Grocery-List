@@ -213,6 +213,12 @@
 						errorMsg.innerHTML = "<b>The " + numType + " has to be a " + problem + "</b>";
 						return false;
 					}
+					else if (form1.control1.value == "2" && fields.numIn.value > groceries.length)
+					{
+						errorMsg.innerHTML = "Item " + fields.numIn.value + " doesn't exist on the list";
+						errorBox(numBox);
+						return false;
+					}
 					normalBox(numBox);
 					return true;
 				}
