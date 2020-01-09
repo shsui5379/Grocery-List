@@ -81,7 +81,7 @@
 						}
 						if (quantityShow)
 						{
-							listOut.innerHTML += ("<li>" + e.substring(0, e.indexOf("`")) + " (" + e.substring(e.indexOf("`"), e.length) + "qty)</li>");
+							listOut.innerHTML += ("<li>" + e.substring(0, e.indexOf("`")) + " (" + e.substring(e.indexOf("`")+1, e.length) + "qty)</li>");
 						}
 						else
 						{
