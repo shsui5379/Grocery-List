@@ -40,7 +40,6 @@
 				{
 					display: grid;
 					grid-template-columns: auto auto;
-					
 				}
 			</style>
 			<script>
@@ -157,6 +156,8 @@
 									groceries.push(toAddName + "`" + fields.numIn.value);
 									errorMsg.innerHTML = "";
 									display(groceries);
+									fields.itemName.value = "";
+									fields.numIn.value = "";
 								}
 								else
 								{
@@ -168,17 +169,42 @@
 						else //delete item mode
 						{
 							groceries.splice(fields.numIn.value-1, 1);
+							fields.numIn.value = "";
 							display(groceries);
 						}
 					}
 				}
-				function upButton()
+				function arrowDirector(mode)
 				{
-
-				}
-				function downButton()
-				{
-
+					if (verifyNumber(fields.numIn.value))
+					{
+						if ((fields.numIn.value == groceries.length && mode == 2) || (fields.numIn.value == 1 && mode == 1)) //can't move item to negative or pass list length
+						{
+							errorMsg.innerHTML = "<b>Cannot move that item that way</b>";
+							errorBox(numBox);
+							return;
+						}
+						else
+						{
+							if (form2.control2.value == "2")  //reordering list
+							{
+								var temp = groceries[fields.numIn.value-1];
+								if (mode == 1)
+								{
+									var target = fields.numIn.value-2;
+									fields.numIn.value--;
+								}
+								else
+								{
+									var target = fields.numIn.value+2;
+									fields.numIn.value++;
+								}
+								groceries[fields.numIn.value-1] = groceries[target];
+								groceries[target] = temp;
+							}
+							display(groceries);
+						}
+					}
 				}
 				function reset() //empty list
 				{
@@ -213,9 +239,9 @@
 						errorMsg.innerHTML = "<b>The " + numType + " has to be a " + problem + "</b>";
 						return false;
 					}
-					else if (form1.control1.value == "2" && fields.numIn.value > groceries.length)
+					else if (form1.control1.value == "2" && fields.numIn.value > groceries.length) //can't modify an item not on list
 					{
-						errorMsg.innerHTML = "Item " + fields.numIn.value + " doesn't exist on the list";
+						errorMsg.innerHTML = "<b>Item " + fields.numIn.value + " doesn't exist on the list</b>";
 						errorBox(numBox);
 						return false;
 					}
@@ -275,15 +301,15 @@
 						</br>
 						<!-- only display when modifying.  options to move items or delete items -->
 						<label>
-							<input name = "control2" type = "radio" value = "3" onchange="deleteUI();" id = "deleteRadio">
+							<input name = "control2" type = "radio" value = "1" onchange="deleteUI();" id = "deleteRadio">
 							Delete item
 						</label>
 						<label>
-							<input name = "control2" type = "radio" value = "4" onchange="rearrangeUI();">
+							<input name = "control2" type = "radio" value = "2" onchange="rearrangeUI();">
 							Rearange list
 						</label>
 						<label>
-							<input name = "control2" type = "radio" value = "5" onchange = "rearrangeUI();">
+							<input name = "control2" type = "radio" value = "3" onchange = "rearrangeUI();">
 							Change quantities
 						</label>
 					</form>
@@ -308,14 +334,16 @@
 					<!-- button to submit -->
 					<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
 					<span id = "arrows">
-						<button onclick="upButton();">&#11014</button>
-						<button onclick="downButton();">&#11015</button>	
+						<button onclick="arrowDirector(1);">&#11014</button>
+						<button onclick="arrowDirector(2);">&#11015</button>	
 					</span>
+					<!-- error message -->
 					<span id = "error"></span>
 					</br></br>
 					<button onclick = "reset();">Empty list</button>
 				</div>
 				<div>
+					<!-- display -->
 					<ol id = "listDisp"></ol>
 				</div>
 			</div>
