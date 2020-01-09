@@ -36,6 +36,12 @@
 				{
 					color: red;
 				}
+				.splitview
+				{
+					display: grid;
+					grid-template-columns: auto auto;
+					
+				}
 			</style>
 			<script>
 //basics
@@ -56,15 +62,32 @@
 					errorMsg = document.getElementById("error");
 					numBox = document.getElementById("numInBox");
 					nameBox = document.getElementById("itemNameBox");
+					listOut = document.getElementById("listDisp");
 
 					default1.checked = true;
 					default2.checked = true;
 
 					addUI();
 				}
-				function display()
+				function display(list) //outputs the list on the display
 				{
-
+					listOut.innerHTML = "";
+					for (var e of list)
+					{
+						var quantityShow = true;
+						if (e.substring(e.indexOf("`")+1, e.length) == "1")
+						{
+							quantityShow = false;
+						}
+						if (quantityShow)
+						{
+							listOut.innerHTML += ("<li>" + e.substring(0, e.indexOf("`")) + " (" + e.substring(e.indexOf("`"), e.length) + "qty)</li>");
+						}
+						else
+						{
+							listOut.innerHTML += ("<li>" + e.substring(0, e.indexOf("`")) + "</li>");
+						}
+					}
 				}
 
 //ui controls
@@ -133,6 +156,7 @@
 									normalBox(nameBox);
 									groceries.push(toAddName + "`" + fields.numIn.value);
 									errorMsg.innerHTML = "";
+									display(groceries);
 								}
 								else
 								{
@@ -220,62 +244,69 @@
 			<img src = "logo.png" />
 			<h1>Shop Lift Up Grocery List</h1>
 
-			<!-- user interaction -->
-			<form id = "controlsIn1">
-				</br>
-				<!-- choose between adding or modifying -->
-				<label>
-					<input name = "control1" type = "radio" value = "1" onchange="addUI();" id = "addRadio">
-					Add item
-				</label>
-				<label>
-					<input name = "control1" type = "radio" value = "2" onchange="modifyUI();">
-					Modify list
-				</label>
-			</form>
+			<div class = "splitview">
+				<div>
+					<!-- user interaction -->
+					<form id = "controlsIn1">
+						</br>
+						<!-- choose between adding or modifying -->
+						<label>
+							<input name = "control1" type = "radio" value = "1" onchange="addUI();" id = "addRadio">
+							Add item
+						</label>
+						<label>
+							<input name = "control1" type = "radio" value = "2" onchange="modifyUI();">
+							Modify list
+						</label>
+					</form>
 
-			<form id = "controlsIn2">
-				</br>
-				<!-- only display when modifying.  options to move items or delete items -->
-				<label>
-					<input name = "control2" type = "radio" value = "3" onchange="deleteUI();" id = "deleteRadio">
-					Delete item
-				</label>
-				<label>
-					<input name = "control2" type = "radio" value = "4" onchange="rearrangeUI();">
-					Rearange list
-				</label>
-				<label>
-					<input name = "control2" type = "radio" value = "5" onchange = "rearrangeUI();">
-					Change quantities
-				</label>
-			</form>
+					<form id = "controlsIn2">
+						</br>
+						<!-- only display when modifying.  options to move items or delete items -->
+						<label>
+							<input name = "control2" type = "radio" value = "3" onchange="deleteUI();" id = "deleteRadio">
+							Delete item
+						</label>
+						<label>
+							<input name = "control2" type = "radio" value = "4" onchange="rearrangeUI();">
+							Rearange list
+						</label>
+						<label>
+							<input name = "control2" type = "radio" value = "5" onchange = "rearrangeUI();">
+							Change quantities
+						</label>
+					</form>
 
-			<form id = "typeIn">
-				<!-- only displayed when adding.  for recieving the name of the item -->
-				<label id = "nameForm">
+					<form id = "typeIn">
+						<!-- only displayed when adding.  for recieving the name of the item -->
+						<label id = "nameForm">
+							</br>
+							Item name: 
+							<input name = "itemName" type = "text" id = "itemNameBox">
+							</br>
+						</label>
+						</br>
+						<!-- for quantity, or position, depending on what the user needs to do -->
+						<label>
+							<span id = "numLabel"></span>
+							<input name = "numIn" type = "number" id = "numInBox">
+						</label>
+					</form>
 					</br>
-					Item name: 
-					<input name = "itemName" type = "text" id = "itemNameBox">
-					</br>
-				</label>
-				</br>
-				<!-- for quantity, or position, depending on what the user needs to do -->
-				<label>
-					<span id = "numLabel"></span>
-					<input name = "numIn" type = "number" id = "numInBox">
-				</label>
-			</form>
-			</br>
 
-			<!-- button to submit -->
-			<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
-			<span id = "arrows">
-				<button onclick="upButton();">&#11014</button>
-				<button onclick="downButton();">&#11015</button>	
-			</span>
-			<span id = "error"></span>
-			</br></br>
-			<button onclick = "reset();">Empty list</button>
+					<!-- button to submit -->
+					<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
+					<span id = "arrows">
+						<button onclick="upButton();">&#11014</button>
+						<button onclick="downButton();">&#11015</button>	
+					</span>
+					<span id = "error"></span>
+					</br></br>
+					<button onclick = "reset();">Empty list</button>
+				</div>
+				<div>
+					<ol id = "listDisp"></ol>
+				</div>
+			</div>
 		</body>
 	</html>
