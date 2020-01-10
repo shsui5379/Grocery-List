@@ -178,7 +178,7 @@
 				{
 					if (verifyNumber(fields.numIn.value))
 					{
-						if ((fields.numIn.value == groceries.length && mode == 2) || (fields.numIn.value == 1 && mode == 1)) //can't move item to negative or pass list length
+						if (((fields.numIn.value == groceries.length && mode == 2) || (fields.numIn.value == 1 && mode == 1)) && form2.control2.value == "2") //can't move item to negative or pass list length
 						{
 							errorMsg.innerHTML = "<b>Cannot move that item that way</b>";
 							errorBox(numBox);
@@ -189,6 +189,7 @@
 							if (form2.control2.value == "2")  //reordering list
 							{
 								var temp = groceries[fields.numIn.value-1];
+								var tempb = fields.numIn.value-1;
 								if (mode == 1)
 								{
 									var target = fields.numIn.value-2;
@@ -196,10 +197,10 @@
 								}
 								else
 								{
-									var target = fields.numIn.value+2;
+									var target = fields.numIn.value;
 									fields.numIn.value++;
 								}
-								groceries[fields.numIn.value-1] = groceries[target];
+								groceries[tempb] = groceries[target];
 								groceries[target] = temp;
 							}
 							display(groceries);
