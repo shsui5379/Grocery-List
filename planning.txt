@@ -8,7 +8,7 @@ Swap a given index of the grocery list with the previous or next (update number 
 Check array to see if indexOf the input is >0 (duplicate) in the grocery list and not add them [done]
 Spice out delimiter from input if indexOf >0 (present) [done]
 Check if inputted numbers are >0 [done]
-Update quantity
+Update quantity [done]
 Display [done]
 Empty the list with warning [done]
 
@@ -38,6 +38,6 @@ To move up, store index in question in a temp var, index in the array = the elem
 Then, decrease the value of the box by 1 [done]
 To move down, store index in question in a temp var, index in the array = the element of next index, then set the next index = the temp var [done]
 Then, increase the value of the box by 1 [done]
-To increase quantity, increase the quantity part of the string of the index in question
-To decrease quantity, decrease the quantity part of the string of the index in question
+To increase quantity, increase the quantity part of the string of the index in question [done]
+To decrease quantity, decrease the quantity part of the string of the index in question [done]
 Update the display [done]
