@@ -203,8 +203,30 @@
 								groceries[tempb] = groceries[target];
 								groceries[target] = temp;
 							}
-							display(groceries);
+							else //changing quantities
+							{
+								var toEdit = groceries[fields.numIn.value-1].substring(groceries[fields.numIn.value-1].indexOf("`")+1, groceries[fields.numIn.value-1].length);
+								if (mode == 1)
+								{
+									var newQuan = parseInt(toEdit) + 1;
+								}
+								else
+								{
+									if (toEdit == 1)
+									{
+										var newQuan = parseInt(toEdit);
+										errorBox(numBox);
+										errorMsg.innerHTML = "<b>The quantity cannot be less than 0</b>";
+									}
+									else
+									{
+										var newQuan = parseInt(toEdit) - 1;
+									}
+								}
+								groceries[fields.numIn.value-1] = groceries[fields.numIn.value-1].substring(0, groceries[fields.numIn.value-1].indexOf("`")+1) + newQuan;
+							}
 						}
+						display(groceries);
 					}
 				}
 				function reset() //empty list
@@ -219,11 +241,11 @@
 //utilities
 				function verifyNumber(inputNum) //makes sure number is a positive integer
 				{
-					if (inputNum*1 < 0 || !Number.isInteger(inputNum*1) || inputNum.length==0)
+					if (inputNum*1 <= 0 || !Number.isInteger(inputNum*1) || inputNum.length==0)
 					{
 						switch (true)
 						{
-							case inputNum*1 < 0: var problem = "positive number";
+							case inputNum*1 <= 0: var problem = "positive number";
 							break;
 							default: var problem = "whole number";
 							break;
