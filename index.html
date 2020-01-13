@@ -74,7 +74,7 @@
 					for (var e of list)
 					{
 						var quantityShow = true;
-						if (e.substring(e.indexOf("`")+1, e.length) == "1")
+						if (e.substring(e.indexOf("`")+1, e.length) == "1") //show qty when quantity is >1
 						{
 							quantityShow = false;
 						}
@@ -126,11 +126,12 @@
 					arrowButtons.style.display = "inline";
 					submitButton.style.display = "none";
 				}
-				function errorBox(box) //box's state when user enters illegal input
+				function errorBox(box, message) //box's state when user enters illegal input
 				{
 					box.style.borderColor = "red";
 					box.style.borderWidth = "5px";
 					box.style.backgroundColor = "rgb(255, 131, 131)";
+					errorMsg.innerHTML = message;
 				}
 				function normalBox(box) //restore box from error state
 				{
@@ -154,15 +155,13 @@
 								{
 									normalBox(nameBox);
 									groceries.push(toAddName + "`" + fields.numIn.value);
-									errorMsg.innerHTML = "";
 									display(groceries);
 									fields.itemName.value = "";
 									fields.numIn.value = "";
 								}
 								else
 								{
-									errorMsg.innerHTML = "<b>" + toAddName + " already exists on the list</b>";
-									errorBox(nameBox);
+									errorBox(nameBox, "<b>" + toAddName + " already exists on the list</b>");
 								}	
 							}
 						}
@@ -180,18 +179,17 @@
 					{
 						if (((fields.numIn.value == groceries.length && mode == 2) || (fields.numIn.value == 1 && mode == 1)) && form2.control2.value == "2") //can't move item to negative or pass list length
 						{
-							errorMsg.innerHTML = "<b>Cannot move that item that way</b>";
-							errorBox(numBox);
+							errorBox(numBox, "<b>Cannot move that item that way</b>");
 							return;
 						}
 						else
 						{
-							if (form2.control2.value == "2")  //reordering list
+							if (form2.control2.value == "2")  //reordering list using temp var
 							{
 								var temp = groceries[fields.numIn.value-1];
-								var tempb = fields.numIn.value-1;
+								var tempI = fields.numIn.value-1;
 								if (mode == 1)
-								{
+								{ //up
 									var target = fields.numIn.value-2;
 									fields.numIn.value--;
 								}
@@ -200,23 +198,22 @@
 									var target = fields.numIn.value;
 									fields.numIn.value++;
 								}
-								groceries[tempb] = groceries[target];
+								groceries[tempI] = groceries[target];
 								groceries[target] = temp;
 							}
 							else //changing quantities
 							{
 								var toEdit = groceries[fields.numIn.value-1].substring(groceries[fields.numIn.value-1].indexOf("`")+1, groceries[fields.numIn.value-1].length);
 								if (mode == 1)
-								{
+								{ //up
 									var newQuan = parseInt(toEdit) + 1;
 								}
 								else
 								{
 									if (toEdit == 1)
-									{
+									{ //quantity must be >0
 										var newQuan = parseInt(toEdit);
-										errorBox(numBox);
-										errorMsg.innerHTML = "<b>The quantity cannot be less than 0</b>";
+										errorBox(numBox, "<b>The quantity cannot be less than 0</b>");
 									}
 									else
 									{
@@ -243,7 +240,7 @@
 				{
 					if (inputNum*1 <= 0 || !Number.isInteger(inputNum*1) || inputNum.length==0)
 					{
-						switch (true)
+						switch (true) //determine error wording
 						{
 							case inputNum*1 <= 0: var problem = "positive number";
 							break;
@@ -258,14 +255,12 @@
 						{
 							var numType = "position";
 						}
-						errorBox(numBox);
-						errorMsg.innerHTML = "<b>The " + numType + " has to be a " + problem + "</b>";
+						errorBox(numBox, "<b>The " + numType + " has to be a " + problem + "</b>");
 						return false;
 					}
 					else if (form1.control1.value == "2" && fields.numIn.value > groceries.length) //can't modify an item not on list
 					{
-						errorMsg.innerHTML = "<b>Item " + fields.numIn.value + " doesn't exist on the list</b>";
-						errorBox(numBox);
+						errorBox(numBox, "<b>Item " + fields.numIn.value + " doesn't exist on the list</b>");
 						return false;
 					}
 					normalBox(numBox);
@@ -275,8 +270,7 @@
 				{
 					if (fields.itemName.value.length == 0)
 					{
-						errorBox(nameBox);
-						errorMsg.innerHTML = "<b>You forgot to enter a name for the item</b>";
+						errorBox(nameBox, "<b>You forgot to enter a name for the item</b>");
 						return false;
 					}
 					normalBox(nameBox);
@@ -305,7 +299,7 @@
 			<h1>Shop Lift Up Grocery List</h1>
 
 			<div class = "splitview">
-				<div>
+				<div> <!-- left -->
 					<!-- user interaction -->
 					<form id = "controlsIn1">
 						</br>
@@ -354,7 +348,7 @@
 					</form>
 					</br>
 
-					<!-- button to submit -->
+					<!-- buttons -->
 					<button onclick="submitDirector();" id = "mainButton"><span id = "action"></span></button>
 					<span id = "arrows">
 						<button onclick="arrowDirector(1);">&#11014</button>
@@ -365,8 +359,8 @@
 					</br></br>
 					<button onclick = "reset();">Empty list</button>
 				</div>
-				<div>
-					<!-- display -->
+				<div> <!-- right -->
+					<!-- groceries -->
 					<ol id = "listDisp"></ol>
 				</div>
 			</div>
